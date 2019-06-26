@@ -24,20 +24,20 @@ class HomePage extends StatelessWidget {
     //   print( opciones );
     // });
 
-  return FutureBuilder( 
-    future: menuProvider.cargarData(),
-    initialData: [],
-    builder: ( context, AsyncSnapshot<List<dynamic>> snapshot ) {
+    return FutureBuilder( 
+      future: menuProvider.cargarData(),
+      initialData: [],
+      builder: ( context, AsyncSnapshot<List<dynamic>> snapshot ) {
 
-      print( 'Builder' );
-      print( snapshot.data );
+        print( 'Builder' );
+        print( snapshot.data );
 
-      return ListView(
-        children: _listaItems( snapshot.data, context ),
-      );
+        return ListView(
+          children: _listaItems( snapshot.data, context ),
+        );
 
-    },
-  );
+      },
+    );
 
   }
 
