@@ -12,7 +12,7 @@ class HomePageTemp extends StatelessWidget {
         title: Text('Componentes Temp'),
       ),
       body: ListView(
-        children: _crearItemscorts()
+        children: _crearItemscortos()
         
         // <Widget>[
         //   ListTile(
@@ -54,7 +54,7 @@ class HomePageTemp extends StatelessWidget {
     return lista;
   }
 
-  List<Widget> _crearItemscorts() {
+  List<Widget> _crearItemscortos() {
 
     return opciones.map( ( item ) {
       return Column(
