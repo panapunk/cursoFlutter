@@ -17,6 +17,15 @@ class CardPage extends StatelessWidget {
           _cardTipo1(),
           SizedBox( height: 30.0 ),
           _cardTipo2(),
+          _cardTipo1(),
+          SizedBox( height: 30.0 ),
+          _cardTipo2(),
+          _cardTipo1(),
+          SizedBox( height: 30.0 ),
+          _cardTipo2(),
+          _cardTipo1(),
+          SizedBox( height: 30.0 ),
+          _cardTipo2(),
         ],
       ),
     
@@ -26,6 +35,10 @@ class CardPage extends StatelessWidget {
   _cardTipo1() {
 
     return Card(
+      elevation: 10.0,
+      shape: RoundedRectangleBorder( 
+        borderRadius: BorderRadius.circular( 15.0 ),
+      ),
       child: Column(
         children: <Widget>[
           ListTile(
@@ -57,7 +70,9 @@ class CardPage extends StatelessWidget {
 
   _cardTipo2() {
 
-    return Card(
+    final card = Container(
+      // clipBehavior: Clip.antiAlias,
+
       child: Column(
         children: <Widget>[
 
@@ -65,7 +80,7 @@ class CardPage extends StatelessWidget {
             image: NetworkImage('https://static.photocdn.pt/images/articles/2017/04/28/iStock-545347988.jpg'),
             placeholder: AssetImage('assets/jar-loading.gif'),
             fadeInDuration: Duration( milliseconds: 200 ),
-            height: 300.0,
+            height: 250.0,
             fit: BoxFit.cover,
           ),
           // Image(
@@ -77,6 +92,25 @@ class CardPage extends StatelessWidget {
           ),
       ],)
       // borderOnForeground: ,
+    );
+
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(30.0),
+        boxShadow: <BoxShadow> [
+          BoxShadow(
+            color: Colors.white,
+            blurRadius: 10.0,
+            spreadRadius: 2.0,
+            offset: Offset( 2.0, -10.0),
+          ),
+        ],
+        // color: Colors.red,
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(30.0),
+        child: card,
+      )
     );
 
   }
