@@ -72,7 +72,6 @@ class CardPage extends StatelessWidget {
 
     final card = Container(
       // clipBehavior: Clip.antiAlias,
-
       child: Column(
         children: <Widget>[
 
@@ -95,6 +94,7 @@ class CardPage extends StatelessWidget {
     );
 
     return Container(
+      padding: EdgeInsets.all(10.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30.0),
         boxShadow: <BoxShadow> [
@@ -108,9 +108,10 @@ class CardPage extends StatelessWidget {
         // color: Colors.red,
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(30.0),
+        borderRadius: BorderRadius.circular(20.0),
         child: card,
-      )
+      ),
+      // child: card,
     );
 
   }

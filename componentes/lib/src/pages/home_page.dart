@@ -29,8 +29,10 @@ class HomePage extends StatelessWidget {
       initialData: [],
       builder: ( context, AsyncSnapshot<List<dynamic>> snapshot ) {
 
-        print( 'Builder' );
-        print( snapshot.data );
+        // print( 'Builder' );
+        // print( snapshot.data );
+
+        print('cargado');
 
         return ListView(
           children: _listaItems( snapshot.data, context ),
