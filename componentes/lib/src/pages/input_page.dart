@@ -22,6 +22,10 @@ class _InputPageState extends State<InputPage> {
   String _pass = '';
   String _fecha = '';
 
+  String _opcionSeleccionada = 'Volar';
+
+  List<String> _poderes = ['volar', 'Rayos X', 'Super Aliento', 'Super fuerza'];
+
   TextEditingController _inputFieldDateController = new TextEditingController();
 
   @override
@@ -42,6 +46,8 @@ class _InputPageState extends State<InputPage> {
           _crearPassword(),
           Divider(),
           _crearFecha( context ),
+          Divider(),   
+          _crearDropdown( ),
           Divider(),     
           // Salida Nombre
           _crearPersona(),
@@ -211,7 +217,49 @@ bool nomostrar = true;
 
   }
 
+  List<DropdownMenuItem<String>> getOpcionesDropdown() {
 
+    List<DropdownMenuItem<String>> lista = List();
+
+    _poderes.forEach( (poder) {
+
+      lista.add( DropdownMenuItem(
+        child: Text(poder),
+        value: poder != null ? poder : '',
+      ));
+
+    });
+
+    return lista;
+
+  }
+
+
+
+  Widget _crearDropdown( ) {
+
+
+
+    return Row(
+      children: <Widget>[
+        Icon(Icons.select_all),
+        SizedBox(width: 30.0),
+        Expanded(
+          child: DropdownButton(
+            value: _opcionSeleccionada,
+            items: getOpcionesDropdown(),
+            onChanged: ( opt ) {
+              setState(() {
+                _opcionSeleccionada = opt;
+              });
+
+            },
+          ),
+        ),
+      ],
+    );
+
+  }
 
   _selectDate( BuildContext context ) async {
 
@@ -231,15 +279,6 @@ bool nomostrar = true;
     }
 
   }
-
-
-
-
-
-
-
-
-
 
 
 
