@@ -252,7 +252,6 @@ bool nomostrar = true;
               setState(() {
                 _opcionSeleccionada = opt;
               });
-
             },
           ),
         ),
