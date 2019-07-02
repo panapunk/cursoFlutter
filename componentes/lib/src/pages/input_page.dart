@@ -24,7 +24,7 @@ class _InputPageState extends State<InputPage> {
 
   String _opcionSeleccionada = 'Volar';
 
-  List<String> _poderes = ['volar', 'Rayos X', 'Super Aliento', 'Super fuerza'];
+  List<String> _poderes = ['Volar', 'Rayos X', 'Super Aliento', 'Super fuerza'];
 
   TextEditingController _inputFieldDateController = new TextEditingController();
 
@@ -58,7 +58,7 @@ class _InputPageState extends State<InputPage> {
     );
   }
 
-  Widget _crearInput() {
+Widget _crearInput() {
 
 bool nomostrar = true;
     // Ocultar teclado
@@ -217,8 +217,11 @@ bool nomostrar = true;
 
   }
 
-  List<DropdownMenuItem<String>> getOpcionesDropdown() {
 
+
+
+
+  List<DropdownMenuItem<String>> getOpcionesDropdown() {
     List<DropdownMenuItem<String>> lista = List();
 
     _poderes.forEach( (poder) {
@@ -230,15 +233,10 @@ bool nomostrar = true;
 
     });
 
-    return lista;
-
+  return lista;
   }
 
-
-
   Widget _crearDropdown( ) {
-
-
 
     return Row(
       children: <Widget>[
@@ -278,9 +276,6 @@ bool nomostrar = true;
     }
 
   }
-
-
-
 
 
   Widget _crearPersona() {

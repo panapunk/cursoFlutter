@@ -22,6 +22,16 @@
             "texto": "Animated Container"
         },
         {
+            "ruta" : "slider",
+            "icon" : "tune",
+            "texto": "Sliders - Checks"
+        },
+        {
+            "ruta" : "list",
+            "icon" : "list",
+            "texto": "Listas y Scroll"
+        },
+        {
             "ruta" : "inputs",
             "icon" : "input",
             "texto": "Inputs"
