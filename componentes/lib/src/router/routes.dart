@@ -10,7 +10,6 @@ import 'package:componentes/src/pages/input_page.dart';
 import 'package:componentes/src/pages/listview_page.dart';
 import 'package:componentes/src/pages/slider_page.dart';
 
-
 Map<String, WidgetBuilder> getApplicationRoutes() {
   
   return <String, WidgetBuilder>{

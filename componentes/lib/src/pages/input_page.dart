@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 
 
 
@@ -238,12 +239,18 @@ bool nomostrar = true;
 
   Widget _crearDropdown( ) {
 
-    return Row(
-      children: <Widget>[
+    return Row(      
+      children: <Widget>[        
         Icon(Icons.select_all),
         SizedBox(width: 30.0),
         Expanded(
           child: DropdownButton(
+            // icon: Icon(Icons.add),
+            isDense: true,
+            disabledHint: Text('deshabilitado'),
+            iconEnabledColor: Colors.red,
+            iconDisabledColor: Colors.red,
+            isExpanded: true,
             value: _opcionSeleccionada,
             items: getOpcionesDropdown(),
             onChanged: ( opt ) {
