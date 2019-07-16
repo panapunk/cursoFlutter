@@ -73,6 +73,7 @@ class _ListaPageState extends State<ListaPage> {
           return FadeInImage(
             image: NetworkImage('https://picsum.photos/500/300/?image=$imagen'),
             placeholder: AssetImage('assets/jar-loading.gif'),
+            fit: BoxFit.cover,
           );
         },
       ),
@@ -127,11 +128,11 @@ class _ListaPageState extends State<ListaPage> {
 
     _isLoading = false;
 
-    _scrollController.animateTo(
-      _scrollController.position.pixels + 100,
-      curve: Curves.fastOutSlowIn,
-      duration: Duration( milliseconds: 250),
-    );
+    // _scrollController.animateTo(
+    //   _scrollController.position.pixels + 100,
+    //   curve: Curves.fastOutSlowIn,
+    //   duration: Duration( milliseconds: 250),
+    // );
 
     _agregar10();
 
@@ -150,7 +151,7 @@ class _ListaPageState extends State<ListaPage> {
               CircularProgressIndicator()
             ],
           ),
-          SizedBox( height: 15.0 ),
+          // SizedBox( height: 15.0 ),
         ],
       );
       // return CircularProgressIndicator();
