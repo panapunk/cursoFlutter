@@ -12,7 +12,7 @@ import 'dart:async';
 import 'package:peliculas/src/models/pelicula_model.dart';
 
 class PeliculasProvider {
-  String _apikey = 'XXXXXXXXXXXXXXX';
+  String _apikey = 'XXXXXXXXXXXXXXXXX';
   String _url = 'api.themoviedb.org';
   String _language = 'es-ES';
   String _apiNumber = '3';

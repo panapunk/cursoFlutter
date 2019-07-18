@@ -21,13 +21,15 @@ class HomePage extends StatelessWidget {
             )
           ],
         ),
-        body: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              _swiperTarjetas(),
-              _footer(context),
+        body: SingleChildScrollView(
+          child: Container(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                _swiperTarjetas(),
+                _footer(context),
               ],
+            ),
           ),
         )
         // SafeArea(
@@ -37,61 +39,54 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _swiperTarjetas() {
-
     return FutureBuilder(
       future: peliculasProvider.getEnCines(),
       builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
-
-        if ( snapshot.hasData ) {
+        if (snapshot.hasData) {
           return CardSwiper(
             peliculas: snapshot.data,
           );
-        } else { 
+        } else {
           return Container(
             height: 400.0,
-            child: Center(
-              child: CircularProgressIndicator()
-              ),
-            );
+            child: Center(child: CircularProgressIndicator()),
+          );
         }
       },
     );
-
-
 
     // return Container();
   }
 
   Widget _footer(BuildContext context) {
-
     return Container(
       width: double.infinity,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          
           Container(
-            padding: EdgeInsets.only(left: 20.0), 
-            child: Text('Populares', style: Theme.of(context).textTheme.subhead, )
+              padding: EdgeInsets.only(left: 20.0),
+              child: Text(
+                'Populares',
+                style: Theme.of(context).textTheme.subhead,
+              )),
+          SizedBox(
+            height: 5.0,
           ),
-          SizedBox(height: 5.0,),
-
           FutureBuilder(
             future: peliculasProvider.getPopulares(),
             builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
-              
-              if ( snapshot.hasData ) {
-                return MovieHorizontal( peliculas: snapshot.data, );
+              if (snapshot.hasData) {
+                return MovieHorizontal(
+                  peliculas: snapshot.data,
+                );
               } else {
                 return Center(child: CircularProgressIndicator());
               }
             },
-
           ),
-
         ],
       ),
     );
-
   }
 }
