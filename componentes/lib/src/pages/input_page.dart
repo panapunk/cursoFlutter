@@ -1,4 +1,3 @@
-
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -6,18 +5,12 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
-
-
 class InputPage extends StatefulWidget {
-
-  @override 
+  @override
   _InputPageState createState() => _InputPageState();
-
 }
 
-
 class _InputPageState extends State<InputPage> {
-
   String _nombre = '';
   String _email = '';
   String _pass = '';
@@ -31,69 +24,87 @@ class _InputPageState extends State<InputPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Inputs de texto'),
-      ),
-      body: ListView(
-        padding: EdgeInsets.symmetric( horizontal: 10.0, vertical: 20.0),
-        children: <Widget>[
-
-          // Nombre
-          _crearInput(),
-          Divider(),
-          _crearEmail(),
-          Divider(),
-          _crearPassword(),
-          Divider(),
-          _crearFecha( context ),
-          Divider(),   
-          _crearDropdown( ),
-          Divider(),     
-          // Salida Nombre
-          _crearPersona(),
-          Divider(),
-
-        ],
+    return RawKeyboardListener(
+      onKey: (key) {
+        setState(() {
+          print(key);
+        });
+      },
+      focusNode: FocusNode(),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Inputs de texto'),
+        ),
+        body: ListView(
+          padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
+          children: <Widget>[
+            // Nombre
+            // RawKeyboardListener(
+            //   child: _crearInput(),
+            //   onKey: (key) {
+            //     setState(() {
+            //       print(key);
+            //     });
+            //   },
+            //   focusNode: FocusNode(),
+            // ),
+            _crearInput(),
+            Divider(),
+            _crearEmail(),
+            Divider(),
+            _crearPassword(),
+            Divider(),
+            _crearFecha(context),
+            Divider(),
+            _crearDropdown(),
+            Divider(),
+            // Salida Nombre
+            _crearPersona(),
+            Divider(),
+          ],
+        ),
       ),
     );
   }
 
-Widget _crearInput() {
-
-bool nomostrar = true;
+  Widget _crearInput() {
+    bool nomostrar = true;
     // Ocultar teclado
-    // sleep( 
-    //   Duration(milliseconds: 500),
-    // );
-    // SystemChannels.textInput.invokeMethod('TextInput.hide');
+    sleep(
+      Duration(milliseconds: 1),
+    );
+    SystemChannels.textInput.invokeMethod('TextInput.hide');
+
+    var focusNode2 = new FocusNode();
 
     return TextField(
-      // focusNode: FocusNode(),
+      // enableInteractiveSelection: false,
+      // focusNode: focusNode2,
       // onTap: () {
-      //   SystemChannels.textInput.invokeMethod('TextInput.hide');
       //   // SystemChannels.textInput.invokeMethod('TextInput.hide');
+      //   setState(() {
+      //     FocusScope.of(context).requestFocus(focusNode2);
+      //     SystemChannels.textInput.invokeMethod('TextInput.hide');
+      //     SystemChannels.textInput.invokeMethod('TextInput.hide');
+      //     print('entra Cerrar');
+      //   });
       // },
       // autofocus: true,
       textCapitalization: TextCapitalization.sentences,
       decoration: InputDecoration(
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.0)
-        ) ,
-        counter: Text('Letras ${ _nombre.length }' ),
-
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
+        counter: Text('Letras ${_nombre.length}'),
         hintText: nomostrar ? 'Nombre de la persona, (placeholder)' : 'eeee',
-
         labelText: 'Nombre',
         helperText: 'Solo es el nombre',
-        suffixIcon: Icon( Icons.accessibility),
+        suffixIcon: Icon(Icons.accessibility),
         icon: InkWell(
-          onTap: () {
-            print('onTap');
-            // FocusScope.of(context).requestFocus(new FocusNode());
-          },
-          child: Icon( Icons.account_circle )
-        ),
+            onTap: () {
+              print('onTap');
+              // FocusScope.of(context).requestFocus(new FocusNode());
+              FocusScope.of(context).requestFocus(new FocusNode());
+            },
+            child: Icon(Icons.account_circle)),
       ),
       onChanged: (valorObtenido) {
         setState(() {
@@ -102,13 +113,11 @@ bool nomostrar = true;
         });
       },
     );
-
   }
 
   Widget _crearEmail() {
-
     // Ocultar teclado
-    // sleep( 
+    // sleep(
     //   Duration(milliseconds: 500),
     // );
     // SystemChannels.textInput.invokeMethod('TextInput.hide');
@@ -123,21 +132,18 @@ bool nomostrar = true;
       // autofocus: true,
       textCapitalization: TextCapitalization.sentences,
       decoration: InputDecoration(
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.0)
-        ) ,
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
         // counter: Text('Letras ${ _nombre.length }' ),
         hintText: 'Email, (placeholder)',
         labelText: 'Email',
         helperText: 'Solo es el email',
-        suffixIcon: Icon( Icons.alternate_email),
+        suffixIcon: Icon(Icons.alternate_email),
         icon: InkWell(
-          onTap: () {
-            print('onTap');
-            // FocusScope.of(context).requestFocus(new FocusNode());
-          },
-          child: Icon( Icons.email )
-        ),
+            onTap: () {
+              print('onTap');
+              // FocusScope.of(context).requestFocus(new FocusNode());
+            },
+            child: Icon(Icons.email)),
       ),
       onChanged: (valorObtenido) {
         setState(() {
@@ -146,13 +152,11 @@ bool nomostrar = true;
         });
       },
     );
-
   }
 
   Widget _crearPassword() {
-
     // Ocultar teclado
-    // sleep( 
+    // sleep(
     //   Duration(milliseconds: 500),
     // );
     // SystemChannels.textInput.invokeMethod('TextInput.hide');
@@ -168,21 +172,18 @@ bool nomostrar = true;
       // autofocus: true,
       // textCapitalization: TextCapitalization.sentences,
       decoration: InputDecoration(
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.0)
-        ) ,
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
         // counter: Text('Letras ${ _nombre.length }' ),
         hintText: 'passWord, (placeholder)',
         labelText: 'PassWord',
         helperText: 'Introduce tu contraseña',
-        suffixIcon: Icon( Icons.extension),
+        suffixIcon: Icon(Icons.extension),
         icon: InkWell(
-          onTap: () {
-            print('onTap');
-            // FocusScope.of(context).requestFocus(new FocusNode());
-          },
-          child: Icon( Icons.extension )
-        ),
+            onTap: () {
+              print('onTap');
+              // FocusScope.of(context).requestFocus(new FocusNode());
+            },
+            child: Icon(Icons.extension)),
       ),
       onChanged: (valorObtenido) {
         setState(() {
@@ -191,56 +192,44 @@ bool nomostrar = true;
         });
       },
     );
-
   }
 
-  Widget _crearFecha( BuildContext context ) {
-
+  Widget _crearFecha(BuildContext context) {
     return TextField(
       enableInteractiveSelection: false,
       controller: _inputFieldDateController,
       decoration: InputDecoration(
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.0)
-        ) ,
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
         // counter: Text('Letras ${ _nombre.length }' ),
         hintText: 'Fecha de nacimiento',
         labelText: 'Fecha de nacimiento',
         // helperText: 'Fecha de nacimiento',
-        suffixIcon: Icon( Icons.perm_contact_calendar),
-        icon: Icon( Icons.calendar_today ),
+        suffixIcon: Icon(Icons.perm_contact_calendar),
+        icon: Icon(Icons.calendar_today),
       ),
       onTap: () {
         FocusScope.of(context).requestFocus(new FocusNode());
-        _selectDate( context );
+        _selectDate(context);
       },
     );
-
   }
-
-
-
-
 
   List<DropdownMenuItem<String>> getOpcionesDropdown() {
     List<DropdownMenuItem<String>> lista = List();
 
-    _poderes.forEach( (poder) {
-
-      lista.add( DropdownMenuItem(
+    _poderes.forEach((poder) {
+      lista.add(DropdownMenuItem(
         child: Text(poder),
         value: poder != null ? poder : '',
       ));
-
     });
 
-  return lista;
+    return lista;
   }
 
-  Widget _crearDropdown( ) {
-
-    return Row(      
-      children: <Widget>[        
+  Widget _crearDropdown() {
+    return Row(
+      children: <Widget>[
         Icon(Icons.select_all),
         SizedBox(width: 30.0),
         Expanded(
@@ -253,7 +242,7 @@ bool nomostrar = true;
             isExpanded: true,
             value: _opcionSeleccionada,
             items: getOpcionesDropdown(),
-            onChanged: ( opt ) {
+            onChanged: (opt) {
               setState(() {
                 _opcionSeleccionada = opt;
               });
@@ -262,31 +251,26 @@ bool nomostrar = true;
         ),
       ],
     );
-
   }
 
-  _selectDate( BuildContext context ) async {
-
+  _selectDate(BuildContext context) async {
     DateTime picked = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime(2018),
       lastDate: DateTime(2025),
-      locale: Locale( 'es', 'ES' ),
+      locale: Locale('es', 'ES'),
     );
 
-    if ( picked != null ) {
-      setState( () {
+    if (picked != null) {
+      setState(() {
         _fecha = picked.toString();
         _inputFieldDateController.text = _fecha;
       });
     }
-
   }
 
-
   Widget _crearPersona() {
-
     return Column(
       children: <Widget>[
         ListTile(
@@ -300,7 +284,5 @@ bool nomostrar = true;
         ),
       ],
     );
-
   }
-
 }
