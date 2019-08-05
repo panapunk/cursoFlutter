@@ -12,12 +12,13 @@ import 'dart:async';
 import 'package:peliculas/src/models/pelicula_model.dart';
 
 class PeliculasProvider {
-  String _apikey = 'XXXXXXXXXXXXXXXXX';
+  String _apikey = '62b8db3ff0a4815d7a25f0589f5944c2';
   String _url = 'api.themoviedb.org';
   String _language = 'es-ES';
   String _apiNumber = '3';
 
   int _popularesPage = 0;
+  bool _cargando = false;
 
   List<Pelicula> _populares = new List();
 
@@ -50,6 +51,9 @@ class PeliculasProvider {
   }
 
   Future<List<Pelicula>> getPopulares() async {
+
+    if ( _cargando ) return [];
+    _cargando = true;
     _popularesPage++;
 
     String _unencodedPath = _apiNumber + '/movie/popular';
@@ -64,7 +68,9 @@ class PeliculasProvider {
     _populares.addAll(resp);
     popularesSink(_populares);
 
+    _cargando = false;
     return resp;
 
   }
+
 }
